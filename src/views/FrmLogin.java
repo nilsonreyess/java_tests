@@ -37,11 +37,6 @@ public class FrmLogin extends javax.swing.JFrame {
         LblPassword.setText("Contraseña");
 
         BtnLogin.setText("Ingresar");
-        BtnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnLoginActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,19 +85,12 @@ public class FrmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
-        FrmMain frmMain = new FrmMain();
-        frmMain.setVisible(true);
-        frmMain.setLocationRelativeTo(this);
-        this.dispose();
-    }//GEN-LAST:event_BtnLoginActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnLogin;
+    public javax.swing.JButton BtnLogin;
     private javax.swing.JLabel LblPassword;
     private javax.swing.JLabel LblTitleLogin;
     private javax.swing.JLabel LblUsername;
-    private javax.swing.JPasswordField TxtPassword;
-    private javax.swing.JTextField TxtUsername;
+    public javax.swing.JPasswordField TxtPassword;
+    public javax.swing.JTextField TxtUsername;
     // End of variables declaration//GEN-END:variables
 }
