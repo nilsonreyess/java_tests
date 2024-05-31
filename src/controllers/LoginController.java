@@ -3,7 +3,6 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import models.User;
 import models.UserDAO;
@@ -25,12 +24,9 @@ public class LoginController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmLogin.BtnLogin) {
-            try {
-                String username = frmLogin.TxtUsername.getText();
-                String password = String.valueOf(frmLogin.TxtPassword.getPassword());
-                user.setUsername(username);
-                user.setPassword(password);
-                
+            if (validateUser()) {
+                user.setUsername(frmLogin.TxtUsername.getText());
+                user.setPassword(String.valueOf(frmLogin.TxtPassword.getPassword()));
                 if (userDao.loginValidate(user)) {
                     FrmMain frmMain = new FrmMain();
                     MainController mainController = new MainController(frmMain, user);
@@ -40,13 +36,24 @@ public class LoginController implements ActionListener{
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos de ingreso inválidos.");
                 }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error: Ocurrio un error con la base de datos.");
             }
-
                     
         }
         
+    }
+    
+    public boolean validateUser() {
+        if (frmLogin.TxtUsername.getText().length() < 5) {
+            JOptionPane.showMessageDialog(null, "Longitud del usuario no cumple las políticas.");
+            frmLogin.TxtUsername.requestFocus();
+            return false;
+        }
+        if (frmLogin.TxtPassword.getPassword().length < 5) {
+            JOptionPane.showMessageDialog(null, "Longitud del password no cumple las políticas.");
+            frmLogin.TxtPassword.requestFocus();
+            return false;
+        }
+        return true;
     }
     
 }

@@ -12,7 +12,9 @@ public class FrmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         LblIcono = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
         LblUserFullname = new javax.swing.JLabel();
+        LblUserRole = new javax.swing.JLabel();
         BarMenu = new javax.swing.JMenuBar();
         MnuFile = new javax.swing.JMenu();
         MnuFileUsers = new javax.swing.JMenuItem();
@@ -25,11 +27,14 @@ public class FrmMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de evaluación");
+        setPreferredSize(new java.awt.Dimension(400, 300));
         setResizable(false);
 
         LblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/test.png"))); // NOI18N
 
-        LblUserFullname.setText("Estudiante: Docente....");
+        LblUserFullname.setText("Usuario: usuario - fullname");
+
+        LblUserRole.setText("Rol: Estudiante");
 
         MnuFile.setText("Archivo");
 
@@ -59,23 +64,29 @@ public class FrmMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator3)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(LblIcono))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(LblUserFullname)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(127, 127, 127)
+                .addComponent(LblIcono)
+                .addContainerGap(138, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LblUserFullname)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LblUserRole)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(44, 44, 44)
                 .addComponent(LblIcono)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LblUserFullname)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblUserFullname)
+                    .addComponent(LblUserRole))
                 .addContainerGap())
         );
 
@@ -85,7 +96,8 @@ public class FrmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarMenu;
     private javax.swing.JLabel LblIcono;
-    private javax.swing.JLabel LblUserFullname;
+    public javax.swing.JLabel LblUserFullname;
+    public javax.swing.JLabel LblUserRole;
     private javax.swing.JMenu MnuFile;
     public javax.swing.JMenuItem MnuFileLogout;
     public javax.swing.JMenuItem MnuFileUsers;
@@ -94,6 +106,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuTestSetting;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 
 }
