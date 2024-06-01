@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import models.User;
 import models.UserDAO;
@@ -28,13 +28,21 @@ public class UsersController implements ActionListener {
         this.frmUsers.BtnUpdate.addActionListener(this);
         this.frmUsers.BtnDelete.addActionListener(this);
         this.frmUsers.BtnCancel.addActionListener(this);
+        this.frmUsers.MnuCloseUsers.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                frmUsers.dispose();
+            }
+        });
         this.frmUsers.TblUsers.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                JOptionPane.showMessageDialog(null, "Hola desde la tabla.");
+                readDataTable(e);
             }
         });
+        getDataCombo();
         getDataTable();
+        startButtons();
         
     }
     
@@ -42,12 +50,22 @@ public class UsersController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
     }
+
+    private void getDataCombo() {
+        DefaultComboBoxModel mdlCmbRoles = new DefaultComboBoxModel();
+        mdlCmbRoles.addElement("Seleccione el rol");
+        mdlCmbRoles.addElement("Profesor");
+        mdlCmbRoles.addElement("Estudiante");
+        frmUsers.CmbRole.setModel(mdlCmbRoles);
+    }
     
-    public void getDataTable() {
+    private void getDataTable() {
         ArrayList<User> users = userDao.getUsers();
         DefaultTableModel mdlTable = new DefaultTableModel();
         
         mdlTable.addColumn("Id");
+        mdlTable.addColumn("Dni");
+        mdlTable.addColumn("Password");
         mdlTable.addColumn("It");
         mdlTable.addColumn("Nombre completo");
         mdlTable.addColumn("Usuario");
@@ -56,12 +74,14 @@ public class UsersController implements ActionListener {
         
         int it = 1;
         for (User item : users) {
-            Object[] itemTabla = new Object[5];
+            Object[] itemTabla = new Object[7];
             itemTabla[0] = item.getId_user();
-            itemTabla[1] = it;
-            itemTabla[2] = item.getFullname();
-            itemTabla[3] = item.getUsername();
-            itemTabla[4] = item.getRole() == 1 ? "Profesor" : "Estudiante";
+            itemTabla[1] = item.getDni();
+            itemTabla[2] = item.getPassword();
+            itemTabla[3] = it;
+            itemTabla[4] = item.getFullname();
+            itemTabla[5] = item.getUsername();
+            itemTabla[6] = item.getRole() == 1 ? "Profesor" : "Estudiante";
             mdlTable.addRow(itemTabla);
             it++;
         }
@@ -71,12 +91,54 @@ public class UsersController implements ActionListener {
         this.frmUsers.TblUsers.getColumnModel().getColumn(0).setMinWidth(0);
         this.frmUsers.TblUsers.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         this.frmUsers.TblUsers.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+        this.frmUsers.TblUsers.getColumnModel().getColumn(1).setMaxWidth(0);
+        this.frmUsers.TblUsers.getColumnModel().getColumn(1).setMinWidth(0);
+        this.frmUsers.TblUsers.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+        this.frmUsers.TblUsers.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+        this.frmUsers.TblUsers.getColumnModel().getColumn(2).setMaxWidth(0);
+        this.frmUsers.TblUsers.getColumnModel().getColumn(2).setMinWidth(0);
+        this.frmUsers.TblUsers.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(0);
+        this.frmUsers.TblUsers.getTableHeader().getColumnModel().getColumn(2).setMinWidth(0);
         
-        this.frmUsers.TblUsers.getColumnModel().getColumn(1).setPreferredWidth(20);
-        this.frmUsers.TblUsers.getColumnModel().getColumn(2).setPreferredWidth(150);
-        this.frmUsers.TblUsers.getColumnModel().getColumn(3).setPreferredWidth(100);
-        this.frmUsers.TblUsers.getColumnModel().getColumn(4).setPreferredWidth(100);
+        this.frmUsers.TblUsers.getColumnModel().getColumn(3).setPreferredWidth(20);
+        this.frmUsers.TblUsers.getColumnModel().getColumn(4).setPreferredWidth(150);
+        this.frmUsers.TblUsers.getColumnModel().getColumn(5).setPreferredWidth(100);
+        this.frmUsers.TblUsers.getColumnModel().getColumn(6).setPreferredWidth(100);
         
     }
     
+    private void startButtons() {
+        frmUsers.TxtDni.setText("");
+        frmUsers.TxtDni.setEnabled(false);
+        frmUsers.TxtFullname.setText("");
+        frmUsers.TxtFullname.setEnabled(false);
+        frmUsers.TxtUsername.setText("");
+        frmUsers.TxtUsername.setEnabled(false);
+        frmUsers.TxtPassword.setText("");
+        frmUsers.TxtPassword.setEnabled(false);
+        frmUsers.CmbRole.setSelectedIndex(0);
+        frmUsers.CmbRole.setEnabled(false);
+        frmUsers.BtnNew.setText("Nuevo");
+        frmUsers.BtnNew.setEnabled(true);
+        frmUsers.BtnUpdate.setText("Modificar");
+        frmUsers.BtnUpdate.setEnabled(false);
+        frmUsers.BtnDelete.setText("Eliminar");
+        frmUsers.BtnDelete.setEnabled(false);
+        frmUsers.BtnCancel.setText("Cancelar");
+        frmUsers.BtnCancel.setEnabled(false);
+        frmUsers.LblId_user.setText("0");
+        frmUsers.TblUsers.clearSelection();
+        frmUsers.BtnNew.requestFocus();
+    }
+    
+    private void readDataTable(MouseEvent e) {
+        int row = frmUsers.TblUsers.rowAtPoint(e.getPoint());
+        
+        frmUsers.LblId_user.setText(String.valueOf(frmUsers.TblUsers.getValueAt(row, 0)));
+        frmUsers.TxtDni.setText(String.valueOf(frmUsers.TblUsers.getValueAt(row, 1)));
+        frmUsers.TxtPassword.setText(String.valueOf(frmUsers.TblUsers.getValueAt(row, 2)));
+        frmUsers.TxtFullname.setText(String.valueOf(frmUsers.TblUsers.getValueAt(row, 4)));
+        frmUsers.TxtUsername.setText(String.valueOf(frmUsers.TblUsers.getValueAt(row, 5)));
+        frmUsers.CmbRole.setSelectedItem(frmUsers.TblUsers.getValueAt(row, 6));
+    }
 }

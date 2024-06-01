@@ -29,7 +29,7 @@ public class UserDAO {
     // Método para recuperar todos los usuarios de la App
     public ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
-        String sql = "SELECT id_user, dni, fullname, username, role FROM users";
+        String sql = "SELECT id_user, dni, fullname, username, password, role FROM users";
         
         try {
             dbConnection = dbConnect.getConnection();
@@ -42,6 +42,7 @@ public class UserDAO {
                 user.setDni(rs.getString("dni"));
                 user.setFullname(rs.getString("fullname"));
                 user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 users.add(user);
             }

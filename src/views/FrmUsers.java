@@ -33,6 +33,8 @@ public class FrmUsers extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblUsers = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        MnuCloseUsers = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configuración - Usuarios");
@@ -110,6 +112,11 @@ public class FrmUsers extends javax.swing.JFrame {
             TblUsers.getColumnModel().getColumn(4).setResizable(false);
             TblUsers.getColumnModel().getColumn(4).setPreferredWidth(100);
         }
+
+        MnuCloseUsers.setText("Cerrar");
+        jMenuBar1.add(MnuCloseUsers);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -225,11 +232,13 @@ public class FrmUsers extends javax.swing.JFrame {
     private javax.swing.JLabel LblSubtitle;
     private javax.swing.JLabel LblTitle;
     private javax.swing.JLabel LblUsername;
+    public javax.swing.JMenu MnuCloseUsers;
     public javax.swing.JTable TblUsers;
     public javax.swing.JTextField TxtDni;
     public javax.swing.JTextField TxtFullname;
     public javax.swing.JPasswordField TxtPassword;
     public javax.swing.JTextField TxtUsername;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
