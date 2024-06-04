@@ -15,11 +15,12 @@ import views.FrmUsers;
 
 public class UsersController implements ActionListener {
     FrmUsers frmUsers = new FrmUsers();
-    User user = new User();
+    User user, userNow;
     UserDAO userDao = new UserDAO();
 
     public UsersController(FrmUsers users, User user) {
         this.frmUsers = users;
+        this.userNow = user;
         this.frmUsers.TxtDni.addActionListener(this);
         this.frmUsers.TxtFullname.addActionListener(this);
         this.frmUsers.TxtUsername.addActionListener(this);
@@ -62,12 +63,13 @@ public class UsersController implements ActionListener {
                 
             } else {
                 // Validar los campos ingresados
-                
-                user.setDni(frmUsers.TxtDni.getText());
-                user.setFullname(frmUsers.TxtFullname.getText());
-                user.setUsername(frmUsers.TxtUsername.getText());
-                user.setPassword(String.valueOf(frmUsers.TxtPassword.getPassword()));
-                user.setRole(frmUsers.CmbRole.getSelectedIndex());
+                user = new User(
+                        frmUsers.TxtDni.getText(),
+                        frmUsers.TxtFullname.getText(),
+                        frmUsers.TxtUsername.getText(),
+                        String.valueOf(frmUsers.TxtPassword.getPassword()),
+                        frmUsers.CmbRole.getSelectedIndex()
+                );
                 
                 if (userDao.createUser(user)) {
                     JOptionPane.showMessageDialog(frmUsers, "Usuario creado correctamente.");
@@ -79,6 +81,16 @@ public class UsersController implements ActionListener {
                     
                 }
             }
+        }
+        
+        if (e.getSource() == frmUsers.BtnDelete) {
+            if (userDao.deleteUser(Integer.parseInt(frmUsers.LblId_user.getText()))) {
+                JOptionPane.showMessageDialog(frmUsers, "Usuario borrado satisfactoriamente.");
+            } else {
+                JOptionPane.showMessageDialog(frmUsers, "El usuario NO pudo ser borrado.");
+            }
+            getDataTable();
+            startButtons();
         }
         
         if (e.getSource() == frmUsers.BtnCancel) {

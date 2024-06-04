@@ -12,24 +12,60 @@ public class UserDAO {
     
     PreparedStatement ps;
     ResultSet rs;
-    Connection dbConnection;
     DBConnect dbConnect = new DBConnect();
+    Connection dbConnection = dbConnect.getConnection();
     User user = new User();
 
     // Método para eliminar un usuario
     public boolean deleteUser(int id_user) {
+        String sql = "DELETE FROM users WHERE id_user = ?";
         
-        return true;
+        try {
+            ps = dbConnection.prepareStatement(sql);
+            ps.setInt(1, id_user);
+            
+            if (ps.executeUpdate() >= 1) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch (SQLException e) {
+            return false;
+        }
+        
     }
     
     // Método para actualizar un usuario
+    public boolean updateUser(User userUpdate) {
+        String sql = "UPDATE users SET dni = ?, fullname = ?, username = ?, password = ?, role = ? WHERE id_user = ?";
+        
+        try {
+            ps = dbConnection.prepareStatement(sql);
+            ps.setString(1, userUpdate.getDni());
+            ps.setString(2, userUpdate.getFullname());
+            ps.setString(3, userUpdate.getUsername());
+            ps.setString(4, userUpdate.getPassword());
+            ps.setInt(5, userUpdate.getRole());
+            ps.setInt(6, userUpdate.getId_user());
+            
+            if (ps.executeUpdate() >= 1) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch (SQLException e) {
+            return false;
+        }
+        
+    }
     
     // Método para agregar un usuario
     public boolean createUser(User userAdd) {
         String sql = "INSERT INTO users (dni, fullname, username, password, role) VALUES (?, ?, ?, ?, ?)";
         
         try {
-            dbConnection = dbConnect.getConnection();
             ps = dbConnection.prepareStatement(sql);
             ps.setString(1, userAdd.getDni());
             ps.setString(2, userAdd.getFullname());
@@ -55,18 +91,19 @@ public class UserDAO {
         String sql = "SELECT id_user, dni, fullname, username, password, role FROM users";
         
         try {
-            dbConnection = dbConnect.getConnection();
             ps = dbConnection.prepareStatement(sql);
             rs = ps.executeQuery();
             
             while (rs.next()) {
-                user.setId_user(rs.getInt("id_user"));
-                user.setDni(rs.getString("dni"));
-                user.setFullname(rs.getString("fullname"));
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                user.setRole(rs.getInt("role"));
-                users.add(user);
+                User userDao = new User(
+                    rs.getInt("id_user"),
+                    rs.getString("dni"),
+                    rs.getString("fullname"),
+                    rs.getString("username"),
+                    rs.getString("password"),
+                    rs.getInt("role")
+                );
+                users.add(userDao);
             }
             
             return users;
@@ -78,22 +115,22 @@ public class UserDAO {
     
     // Método para recuperar datos de un usuario en Main
     public User userApp(User userMain) {
-        User appUser = new User();
         String sql = "SELECT id_user, dni, fullname, username, role FROM users WHERE username = ? AND password = ?";
         
         try {
-            dbConnection = dbConnect.getConnection();
             ps = dbConnection.prepareStatement(sql);
             ps.setString(1, userMain.getUsername());
             ps.setString(2, userMain.getPassword());
             rs = ps.executeQuery();
             
             if (rs.next()) {
-                appUser.setId_user(rs.getInt("id_user"));
-                appUser.setDni(rs.getString("dni"));
-                appUser.setFullname(rs.getString("fullname"));
-                appUser.setUsername(rs.getString("username"));
-                appUser.setRole(rs.getInt("role"));
+                User appUser = new User(
+                    rs.getInt("id_user"),
+                    rs.getString("dni"),
+                    rs.getString("fullname"),
+                    rs.getString("username"),
+                    rs.getInt("role")
+                );
                 return appUser;
                 
             } else {
@@ -112,7 +149,6 @@ public class UserDAO {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         
         try {
-            dbConnection = dbConnect.getConnection();
             ps = dbConnection.prepareStatement(sql);
             ps.setString(1, userLogin.getUsername());
             ps.setString(2, userLogin.getPassword());

@@ -13,6 +13,31 @@ public class User {
     public User() {
     }
 
+    public User(int id_user, String dni, String fullname, String username, int role) {
+        this.id_user = id_user;
+        this.dni = dni;
+        this.fullname = fullname;
+        this.username = username;
+        this.role = role;
+    }
+
+    public User(String dni, String fullname, String username, String password, int role) {
+        this.dni = dni;
+        this.fullname = fullname;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(int id_user, String dni, String fullname, String username, String password, int role) {
+        this.id_user = id_user;
+        this.dni = dni;
+        this.fullname = fullname;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
     public int getId_user() {
         return id_user;
     }
