@@ -25,6 +25,29 @@ public class UserDAO {
     // Método para actualizar un usuario
     
     // Método para agregar un usuario
+    public boolean createUser(User userAdd) {
+        String sql = "INSERT INTO users (dni, fullname, username, password, role) VALUES (?, ?, ?, ?, ?)";
+        
+        try {
+            dbConnection = dbConnect.getConnection();
+            ps = dbConnection.prepareStatement(sql);
+            ps.setString(1, userAdd.getDni());
+            ps.setString(2, userAdd.getFullname());
+            ps.setString(3, userAdd.getUsername());
+            ps.setString(4, userAdd.getPassword());
+            ps.setInt(5, userAdd.getRole());
+            
+            if (ps.executeUpdate() >= 1) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch (SQLException e) {
+            return false;
+        }
+        
+    }
     
     // Método para recuperar todos los usuarios de la App
     public ArrayList<User> getUsers() {
@@ -33,7 +56,6 @@ public class UserDAO {
         
         try {
             dbConnection = dbConnect.getConnection();
-            
             ps = dbConnection.prepareStatement(sql);
             rs = ps.executeQuery();
             
@@ -61,7 +83,6 @@ public class UserDAO {
         
         try {
             dbConnection = dbConnect.getConnection();
-            
             ps = dbConnection.prepareStatement(sql);
             ps.setString(1, userMain.getUsername());
             ps.setString(2, userMain.getPassword());
@@ -92,7 +113,6 @@ public class UserDAO {
         
         try {
             dbConnection = dbConnect.getConnection();
-            
             ps = dbConnection.prepareStatement(sql);
             ps.setString(1, userLogin.getUsername());
             ps.setString(2, userLogin.getPassword());

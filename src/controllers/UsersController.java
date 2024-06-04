@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.User;
 import models.UserDAO;
@@ -48,7 +49,41 @@ public class UsersController implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == frmUsers.BtnNew) {
+            if (frmUsers.BtnNew.getText().equals("Nuevo")) {
+                frmUsers.TxtDni.setEnabled(true);
+                frmUsers.TxtFullname.setEnabled(true);
+                frmUsers.TxtUsername.setEnabled(true);
+                frmUsers.TxtPassword.setEnabled(true);
+                frmUsers.CmbRole.setEnabled(true);
+                frmUsers.BtnNew.setText("Guardar");
+                frmUsers.BtnCancel.setEnabled(true);
+                frmUsers.TxtDni.requestFocus();
+                
+            } else {
+                // Validar los campos ingresados
+                
+                user.setDni(frmUsers.TxtDni.getText());
+                user.setFullname(frmUsers.TxtFullname.getText());
+                user.setUsername(frmUsers.TxtUsername.getText());
+                user.setPassword(String.valueOf(frmUsers.TxtPassword.getPassword()));
+                user.setRole(frmUsers.CmbRole.getSelectedIndex());
+                
+                if (userDao.createUser(user)) {
+                    JOptionPane.showMessageDialog(frmUsers, "Usuario creado correctamente.");
+                    getDataTable();
+                    startButtons();
+                    
+                } else {
+                    JOptionPane.showMessageDialog(frmUsers, "El usuario no pudo ser creado.");
+                    
+                }
+            }
+        }
         
+        if (e.getSource() == frmUsers.BtnCancel) {
+            startButtons();
+        }
     }
 
     private void getDataCombo() {
@@ -140,5 +175,10 @@ public class UsersController implements ActionListener {
         frmUsers.TxtFullname.setText(String.valueOf(frmUsers.TblUsers.getValueAt(row, 4)));
         frmUsers.TxtUsername.setText(String.valueOf(frmUsers.TblUsers.getValueAt(row, 5)));
         frmUsers.CmbRole.setSelectedItem(frmUsers.TblUsers.getValueAt(row, 6));
+        
+        frmUsers.BtnNew.setEnabled(false);
+        frmUsers.BtnUpdate.setEnabled(true);
+        frmUsers.BtnDelete.setEnabled(true);
+        frmUsers.BtnCancel.setEnabled(true);
     }
 }
