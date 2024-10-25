@@ -18,12 +18,12 @@ public class FrmMain extends javax.swing.JFrame {
         BarMenu = new javax.swing.JMenuBar();
         MnuFile = new javax.swing.JMenu();
         MnuFileUsers = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        SepMenuFile = new javax.swing.JPopupMenu.Separator();
         MnuFileLogout = new javax.swing.JMenuItem();
-        MnuTest = new javax.swing.JMenu();
-        MnuTestResponse = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        MnuTestSetting = new javax.swing.JMenuItem();
+        MnuTests = new javax.swing.JMenu();
+        MnuTestsResponse = new javax.swing.JMenuItem();
+        SepMenuTests = new javax.swing.JPopupMenu.Separator();
+        MnuTestsSetting = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de evaluación");
@@ -32,31 +32,33 @@ public class FrmMain extends javax.swing.JFrame {
 
         LblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/test.png"))); // NOI18N
 
+        LblUserFullname.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         LblUserFullname.setText("Usuario: usuario - fullname");
 
+        LblUserRole.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         LblUserRole.setText("Rol: Estudiante");
 
         MnuFile.setText("Archivo");
 
         MnuFileUsers.setText("Usuarios");
         MnuFile.add(MnuFileUsers);
-        MnuFile.add(jSeparator2);
+        MnuFile.add(SepMenuFile);
 
         MnuFileLogout.setText("Salir");
         MnuFile.add(MnuFileLogout);
 
         BarMenu.add(MnuFile);
 
-        MnuTest.setText("Encuestas");
+        MnuTests.setText("Encuestas");
 
-        MnuTestResponse.setText("Responder");
-        MnuTest.add(MnuTestResponse);
-        MnuTest.add(jSeparator1);
+        MnuTestsResponse.setText("Responder");
+        MnuTests.add(MnuTestsResponse);
+        MnuTests.add(SepMenuTests);
 
-        MnuTestSetting.setText("Configurar");
-        MnuTest.add(MnuTestSetting);
+        MnuTestsSetting.setText("Configurar");
+        MnuTests.add(MnuTestsSetting);
 
-        BarMenu.add(MnuTest);
+        BarMenu.add(MnuTests);
 
         setJMenuBar(BarMenu);
 
@@ -81,7 +83,7 @@ public class FrmMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(LblIcono)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -101,11 +103,11 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenu MnuFile;
     public javax.swing.JMenuItem MnuFileLogout;
     public javax.swing.JMenuItem MnuFileUsers;
-    private javax.swing.JMenu MnuTest;
-    private javax.swing.JMenuItem MnuTestResponse;
-    private javax.swing.JMenuItem MnuTestSetting;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenu MnuTests;
+    public javax.swing.JMenuItem MnuTestsResponse;
+    public javax.swing.JMenuItem MnuTestsSetting;
+    public javax.swing.JPopupMenu.Separator SepMenuFile;
+    public javax.swing.JPopupMenu.Separator SepMenuTests;
     private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 

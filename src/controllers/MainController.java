@@ -7,6 +7,7 @@ import models.User;
 import models.UserDAO;
 import views.FrmIntro;
 import views.FrmMain;
+import views.FrmTests;
 import views.FrmUsers;
 
 public class MainController implements ActionListener{
@@ -16,17 +17,25 @@ public class MainController implements ActionListener{
 
     public MainController(FrmMain main, User user) {
         this.frmMain = main;
-        this.frmMain.MnuFileLogout.addActionListener(this);
         this.frmMain.MnuFileUsers.addActionListener(this);
-        // Asigno datos del usuario.
+        this.frmMain.MnuFileLogout.addActionListener(this);
+        this.frmMain.MnuTestsSetting.addActionListener(this);
         this.user = userDao.userApp(user);
-        this.frmMain.LblUserFullname.setText("Usuario: " + this.user.getFullname());
-        String role = this.user.getRole() == 1 ? "Profesor" : "Estudiante";
-        this.frmMain.LblUserRole.setText("Rol: " + role);
+        if (this.user == null) {
+            System.exit(0);
+        }
+        userMenu();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == frmMain.MnuFileUsers) {
+            FrmUsers frmUsers = new FrmUsers();
+            UsersController userController = new UsersController(frmUsers, user);
+            frmUsers.setVisible(true);
+            frmUsers.setLocationRelativeTo(null);
+        }
+        
         if (e.getSource() == frmMain.MnuFileLogout) {
             FrmIntro frmIntro = new FrmIntro();
             IntroController introController = new IntroController(frmIntro);
@@ -35,14 +44,30 @@ public class MainController implements ActionListener{
             frmMain.dispose();
         }
         
-        if (e.getSource() == frmMain.MnuFileUsers) {
-            FrmUsers frmUsers = new FrmUsers();
-            UsersController userController = new UsersController(frmUsers, user);
-            frmUsers.setVisible(true);
-            frmUsers.setLocationRelativeTo(null);
+        if (e.getSource() == frmMain.MnuTestsSetting) {
+            FrmTests frmTests = new FrmTests();
+            TestsController testsController = new TestsController(frmTests, user);
+            frmTests.setVisible(true);
+            frmTests.setLocationRelativeTo(frmMain);
+            
         }
+        
     }
     
-    
+    private void userMenu() {
+        if (this.user.getRole() == 1) {
+            this.frmMain.MnuTestsResponse.setVisible(false);
+            this.frmMain.SepMenuTests.setVisible(false);
+        } else {
+            this.frmMain.SepMenuFile.setVisible(false);
+            this.frmMain.MnuFileUsers.setVisible(false);
+            this.frmMain.SepMenuTests.setVisible(false);
+            this.frmMain.MnuTestsSetting.setVisible(false);
+        }
+        
+        this.frmMain.LblUserFullname.setText("Usuario: " + this.user.getUsername() + " - " + this.user.getFullname());
+        String role = this.user.getRole() == 1 ? "Profesor" : "Estudiante";
+        this.frmMain.LblUserRole.setText("Rol: " + role);
+    }
     
 }

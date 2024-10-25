@@ -16,8 +16,6 @@ public class LoginController implements ActionListener{
     
     public LoginController(FrmLogin login) {
         this.frmLogin = login;
-        this.frmLogin.TxtUsername.addActionListener(this);
-        this.frmLogin.TxtPassword.addActionListener(this);
         this.frmLogin.BtnLogin.addActionListener(this);
     }
    

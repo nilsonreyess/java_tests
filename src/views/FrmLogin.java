@@ -17,11 +17,10 @@ public class FrmLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         LblTitleLogin = new javax.swing.JLabel();
-        LblUsername = new javax.swing.JLabel();
-        LblPassword = new javax.swing.JLabel();
         TxtUsername = new javax.swing.JTextField();
         TxtPassword = new javax.swing.JPasswordField();
         BtnLogin = new javax.swing.JButton();
+        LblLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de evaluación");
@@ -30,13 +29,21 @@ public class FrmLogin extends javax.swing.JFrame {
         LblTitleLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         LblTitleLogin.setText("Ingresar a la Aplicación");
 
-        LblUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LblUsername.setText("Usuario");
+        TxtUsername.setBackground(new java.awt.Color(242, 242, 242));
+        TxtUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TxtUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtUsername.setToolTipText("Digite el usuario");
+        TxtUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        LblPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LblPassword.setText("Contraseña");
+        TxtPassword.setBackground(new java.awt.Color(242, 242, 242));
+        TxtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TxtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPassword.setToolTipText("Digite la contraseña");
+        TxtPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         BtnLogin.setText("Ingresar");
+
+        LblLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/login.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -45,41 +52,34 @@ public class FrmLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(LblTitleLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
+                        .addGap(99, 99, 99)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(LblUsername))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(LblPassword))
+                            .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TxtUsername)
-                                .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(LblTitleLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
+                        .addGap(137, 137, 137)
+                        .addComponent(LblLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
                         .addComponent(BtnLogin)))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LblTitleLogin)
-                .addGap(38, 38, 38)
-                .addComponent(LblUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LblLogin)
                 .addGap(18, 18, 18)
-                .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(LblPassword)
-                .addGap(18, 18, 18)
-                .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnLogin)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -87,9 +87,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnLogin;
-    private javax.swing.JLabel LblPassword;
+    private javax.swing.JLabel LblLogin;
     private javax.swing.JLabel LblTitleLogin;
-    private javax.swing.JLabel LblUsername;
     public javax.swing.JPasswordField TxtPassword;
     public javax.swing.JTextField TxtUsername;
     // End of variables declaration//GEN-END:variables

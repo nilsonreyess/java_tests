@@ -14,7 +14,6 @@ public class UserDAO {
     ResultSet rs;
     DBConnect dbConnect = new DBConnect();
     Connection dbConnection = dbConnect.getConnection();
-    User user = new User();
 
     // Método para eliminar un usuario
     public boolean deleteUser(int id_user) {
@@ -24,12 +23,8 @@ public class UserDAO {
             ps = dbConnection.prepareStatement(sql);
             ps.setInt(1, id_user);
             
-            if (ps.executeUpdate() >= 1) {
-                return true;
-            } else {
-                return false;
-            }
-            
+            return ps.executeUpdate() >= 1;
+
         } catch (SQLException e) {
             return false;
         }
@@ -49,12 +44,8 @@ public class UserDAO {
             ps.setInt(5, userUpdate.getRole());
             ps.setInt(6, userUpdate.getId_user());
             
-            if (ps.executeUpdate() >= 1) {
-                return true;
-            } else {
-                return false;
-            }
-            
+            return ps.executeUpdate() >= 1;
+
         } catch (SQLException e) {
             return false;
         }
@@ -73,12 +64,8 @@ public class UserDAO {
             ps.setString(4, userAdd.getPassword());
             ps.setInt(5, userAdd.getRole());
             
-            if (ps.executeUpdate() >= 1) {
-                return true;
-            } else {
-                return false;
-            }
-            
+            return ps.executeUpdate() >= 1;
+
         } catch (SQLException e) {
             return false;
         }
@@ -154,12 +141,8 @@ public class UserDAO {
             ps.setString(2, userLogin.getPassword());
             rs = ps.executeQuery();
             
-            if (rs.next()) {
-                return true;
-            } else {
-                return false;
-            }
-            
+            return rs.next();
+
         } catch (SQLException e) {
             return false;
             

@@ -15,17 +15,12 @@ import views.FrmUsers;
 
 public class UsersController implements ActionListener {
     FrmUsers frmUsers = new FrmUsers();
-    User user, userNow;
+    User user, userNow = new User();
     UserDAO userDao = new UserDAO();
 
     public UsersController(FrmUsers users, User user) {
         this.frmUsers = users;
         this.userNow = user;
-        this.frmUsers.TxtDni.addActionListener(this);
-        this.frmUsers.TxtFullname.addActionListener(this);
-        this.frmUsers.TxtUsername.addActionListener(this);
-        this.frmUsers.TxtPassword.addActionListener(this);
-        this.frmUsers.CmbRole.addActionListener(this);
         this.frmUsers.BtnNew.addActionListener(this);
         this.frmUsers.BtnUpdate.addActionListener(this);
         this.frmUsers.BtnDelete.addActionListener(this);
@@ -43,9 +38,9 @@ public class UsersController implements ActionListener {
             }
         });
         getDataCombo();
-        getDataTable();
         startButtons();
-        
+        getDataTable();
+        userActual();
     }
     
     @Override
@@ -60,7 +55,6 @@ public class UsersController implements ActionListener {
                 frmUsers.BtnNew.setText("Guardar");
                 frmUsers.BtnCancel.setEnabled(true);
                 frmUsers.TxtDni.requestFocus();
-                
             } else {
                 // Validar los campos ingresados
                 user = new User(
@@ -73,13 +67,42 @@ public class UsersController implements ActionListener {
                 
                 if (userDao.createUser(user)) {
                     JOptionPane.showMessageDialog(frmUsers, "Usuario creado correctamente.");
-                    getDataTable();
-                    startButtons();
-                    
                 } else {
                     JOptionPane.showMessageDialog(frmUsers, "El usuario no pudo ser creado.");
-                    
                 }
+                
+                startButtons();
+                getDataTable();
+            }
+        }
+        
+        if (e.getSource() == frmUsers.BtnUpdate) {
+            if (frmUsers.BtnUpdate.getText().equals("Modificar")) {
+                frmUsers.TxtDni.setEnabled(true);
+                frmUsers.TxtFullname.setEnabled(true);
+                frmUsers.TxtUsername.setEnabled(true);
+                frmUsers.TxtPassword.setEnabled(true);
+                frmUsers.CmbRole.setEnabled(true);
+                frmUsers.BtnUpdate.setText("Actualizar");
+                frmUsers.TxtDni.requestFocus();
+            } else {
+                user = new User(
+                        Integer.parseInt(frmUsers.LblId_user.getText()),
+                        frmUsers.TxtDni.getText(),
+                        frmUsers.TxtFullname.getText(),
+                        frmUsers.TxtUsername.getText(),
+                        String.valueOf(frmUsers.TxtPassword.getPassword()),
+                        frmUsers.CmbRole.getSelectedIndex()
+                );
+                
+                if (userDao.updateUser(user)) {
+                    JOptionPane.showMessageDialog(frmUsers, "Usuario actualizado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(frmUsers, "El usuario NO pudo ser actualizado");
+                }
+                
+                startButtons();
+                getDataTable();
             }
         }
         
@@ -89,13 +112,19 @@ public class UsersController implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(frmUsers, "El usuario NO pudo ser borrado.");
             }
-            getDataTable();
             startButtons();
+            getDataTable();
         }
         
         if (e.getSource() == frmUsers.BtnCancel) {
             startButtons();
         }
+    }
+    
+    private void userActual() {
+        this.frmUsers.LblUsersUser.setText("Usuario: " + this.userNow.getUsername() + " - " + this.userNow.getFullname());
+        String role = this.userNow.getRole() == 1 ? "Profesor" : "Estudiante";
+        this.frmUsers.LblUsersRole.setText("Rol: " + role);
     }
 
     private void getDataCombo() {
@@ -151,7 +180,6 @@ public class UsersController implements ActionListener {
         this.frmUsers.TblUsers.getColumnModel().getColumn(4).setPreferredWidth(150);
         this.frmUsers.TblUsers.getColumnModel().getColumn(5).setPreferredWidth(100);
         this.frmUsers.TblUsers.getColumnModel().getColumn(6).setPreferredWidth(100);
-        
     }
     
     private void startButtons() {

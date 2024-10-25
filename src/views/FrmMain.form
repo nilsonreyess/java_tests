@@ -17,7 +17,10 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="SepMenuFile">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MnuFileLogout">
               <Properties>
@@ -29,22 +32,31 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="MnuTest">
+        <Menu class="javax.swing.JMenu" name="MnuTests">
           <Properties>
             <Property name="text" type="java.lang.String" value="Encuestas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MnuTestResponse">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuTestsResponse">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Responder"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="SepMenuTests">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MnuTestSetting">
+            <MenuItem class="javax.swing.JMenuItem" name="MnuTestsSetting">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Configurar"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -99,7 +111,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Component id="LblIcono" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
               <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -123,6 +135,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LblUserFullname">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="10" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Usuario: usuario - fullname"/>
       </Properties>
       <AuxValues>
@@ -131,6 +146,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LblUserRole">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="10" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Rol: Estudiante"/>
       </Properties>
       <AuxValues>

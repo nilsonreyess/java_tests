@@ -33,6 +33,9 @@ public class FrmUsers extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblUsers = new javax.swing.JTable();
+        jSeparator3 = new javax.swing.JSeparator();
+        LblUsersUser = new javax.swing.JLabel();
+        LblUsersRole = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MnuCloseUsers = new javax.swing.JMenu();
 
@@ -113,6 +116,12 @@ public class FrmUsers extends javax.swing.JFrame {
             TblUsers.getColumnModel().getColumn(4).setPreferredWidth(100);
         }
 
+        LblUsersUser.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        LblUsersUser.setText("Usuario: usuario - Fullname");
+
+        LblUsersRole.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        LblUsersRole.setText("Role: Estudiante");
+
         MnuCloseUsers.setText("Cerrar");
         jMenuBar1.add(MnuCloseUsers);
 
@@ -123,34 +132,6 @@ public class FrmUsers extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LblImageUsers)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LblSubtitle)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LblTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LblId_user)
-                                .addGap(17, 17, 17))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LblDni, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LblFullname, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LblUsername, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LblPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LblRole, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TxtUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                            .addComponent(TxtPassword)
-                            .addComponent(TxtFullname)
-                            .addComponent(TxtDni)
-                            .addComponent(CmbRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 29, Short.MAX_VALUE)
                 .addComponent(BtnNew)
@@ -166,6 +147,43 @@ public class FrmUsers extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jSeparator3)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LblImageUsers)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LblSubtitle)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(LblTitle)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(LblId_user)
+                                        .addGap(17, 17, 17))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LblDni, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(LblFullname, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(LblUsername, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(LblPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(LblRole, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TxtUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                                    .addComponent(TxtPassword)
+                                    .addComponent(TxtFullname)
+                                    .addComponent(TxtDni)
+                                    .addComponent(CmbRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(LblUsersUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LblUsersRole)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,6 +229,12 @@ public class FrmUsers extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LblUsersRole)
+                    .addComponent(LblUsersUser))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -232,6 +256,8 @@ public class FrmUsers extends javax.swing.JFrame {
     private javax.swing.JLabel LblSubtitle;
     private javax.swing.JLabel LblTitle;
     private javax.swing.JLabel LblUsername;
+    public javax.swing.JLabel LblUsersRole;
+    public javax.swing.JLabel LblUsersUser;
     public javax.swing.JMenu MnuCloseUsers;
     public javax.swing.JTable TblUsers;
     public javax.swing.JTextField TxtDni;
@@ -242,5 +268,6 @@ public class FrmUsers extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }
